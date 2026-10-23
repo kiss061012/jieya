@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/bubble/bubble",
+    "pages/whack/whack",
+    "pages/fortune/fortune",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#F6F4FB",
+    "navigationBarTitleText": "解压研究所",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F6F4FB"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#6C5CE7",
+    "backgroundColor": "#ffffff",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "木鱼" },
+      { "pagePath": "pages/bubble/bubble", "text": "捏泡" },
+      { "pagePath": "pages/whack/whack", "text": "锤烦恼" },
+      { "pagePath": "pages/fortune/fortune", "text": "求签" },
+      { "pagePath": "pages/mine/mine", "text": "我的" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

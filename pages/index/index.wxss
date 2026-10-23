@@ -1,0 +1,255 @@
+.page {
+  padding: 30rpx 40rpx 0;
+}
+
+/* 小贴士 */
+.tip-card {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  background: linear-gradient(135deg, #FFF7E0, #FFFDF5);
+  border-radius: 24rpx;
+  padding: 26rpx 30rpx;
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.04);
+}
+
+.tip-emoji {
+  flex-shrink: 0;
+  font-size: 64rpx;
+  line-height: 1;
+}
+
+.tip-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.tip-label {
+  font-size: 22rpx;
+  color: #C9971C;
+  letter-spacing: 2rpx;
+}
+
+.tip-text {
+  margin-top: 8rpx;
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.5;
+}
+
+.tip-text.anim {
+  animation: fadeUp 0.4s ease-out;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 木鱼舞台 */
+.fish-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 40rpx 0 20rpx;
+}
+
+.wave {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 220rpx;
+  height: 220rpx;
+  margin-left: -110rpx;
+  margin-top: -110rpx;
+  border: 6rpx solid rgba(255, 209, 102, 0.95);
+  border-radius: 50%;
+  animation: shock 0.5s ease-out forwards;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@keyframes shock {
+  from { transform: scale(0.55); opacity: 0.95; }
+  to { transform: scale(1.75); opacity: 0; }
+}
+
+.fish-halo {
+  width: 320rpx;
+  height: 320rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, #EDE9FF 0%, #DED6FF 62%, rgba(222, 214, 255, 0) 75%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bob 2.6s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14rpx); }
+}
+
+.fish {
+  font-size: 170rpx;
+  line-height: 1;
+  transition: transform 0.08s;
+}
+
+.fish.knock {
+  transform: translateY(14rpx) scale(0.78) rotate(-7deg);
+}
+
+.float-item {
+  position: absolute;
+  top: 60rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #6C5CE7;
+  animation: floatUp 0.9s ease-out forwards;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes floatUp {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-170rpx); }
+}
+
+.combo {
+  position: absolute;
+  bottom: -6rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #FF6B35;
+  animation: comboPulse 0.6s ease-in-out infinite;
+  z-index: 3;
+}
+
+@keyframes comboPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.2); }
+}
+
+/* 功德数字 */
+.merit-row {
+  display: flex;
+  gap: 24rpx;
+}
+
+.merit-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 28rpx 0;
+  text-align: center;
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.04);
+}
+
+.merit-num {
+  font-size: 52rpx;
+  font-weight: bold;
+  color: #6C5CE7;
+}
+
+.merit-label {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 进化卡片 */
+.skin-card {
+  margin-top: 24rpx;
+  background: linear-gradient(135deg, #6C5CE7, #8F7BFF);
+  border-radius: 24rpx;
+  padding: 26rpx 30rpx;
+  color: #fff;
+  box-shadow: 0 10rpx 30rpx rgba(108, 92, 231, 0.3);
+}
+
+.skin-name {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.skin-bar {
+  margin-top: 16rpx;
+  height: 12rpx;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.skin-bar-fill {
+  height: 100%;
+  background: #FFD166;
+  border-radius: 6rpx;
+  transition: width 0.3s;
+}
+
+.skin-next {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.skin-sound-hint {
+  margin-top: 10rpx;
+  font-size: 20rpx;
+  opacity: 0.55;
+}
+
+/* 形态等级轨道（低调展示） */
+.skin-track {
+  margin-top: 20rpx;
+  padding-top: 16rpx;
+  border-top: 2rpx solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+}
+
+.st-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rpx;
+  opacity: 0.85;
+}
+
+.st-emoji {
+  font-size: 34rpx;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+
+.st-tag {
+  font-size: 18rpx;
+  opacity: 0.8;
+}
+
+.st-item.current {
+  opacity: 1;
+}
+
+.st-item.current .st-emoji {
+  transform: scale(1.3);
+}
+
+.st-item.current .st-tag {
+  color: #FFD166;
+  font-weight: bold;
+}
+
+.st-item.locked {
+  opacity: 0.3;
+}
+
+.hint {
+  margin-top: 24rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #bbb;
+}

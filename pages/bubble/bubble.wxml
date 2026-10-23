@@ -1,0 +1,60 @@
+<view class="page">
+  <view class="head-card">
+    <view class="head-row">
+      <view class="head-title">捏泡泡纸</view>
+      <view class="combo-badge" wx:if="{{combo >= 3}}">🔥 x{{combo}} 连击</view>
+      <view class="head-score">得分 <text class="score-num">{{score}}</text></view>
+    </view>
+    <view class="head-sub">已捏爆 {{poppedCount}} / {{total}} · 用时 {{elapsedText}}s</view>
+    <view class="pbar">
+      <view class="pbar-fill" style="width: {{progress}}%"></view>
+    </view>
+    <view class="praise" wx:for="{{praiseList}}" wx:key="id">{{item.text}}</view>
+  </view>
+
+  <view class="bubble-card">
+    <view class="egg-flash" wx:if="{{eggFlash}}"></view>
+    <view class="bubble-grid">
+      <view
+        wx:for="{{bubbles}}"
+        wx:key="id"
+        class="bubble {{item.egg ? 'egg' : ''}} c{{item.color}} {{item.popped ? 'popped' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="onPop"
+      >
+        <text class="egg-mark" wx:if="{{item.egg && !item.popped}}">✨</text>
+        <text class="burst" wx:if="{{item.popped}}">{{item.burst}}</text>
+      </view>
+    </view>
+
+    <view class="overlay" wx:if="{{allPopped}}">
+      <view class="fireworks">
+        <view class="fw" wx:for="{{particles}}" wx:key="id" style="transform: rotate({{item.angle}}deg)">
+          <view class="fp" style="animation-delay: {{item.delay}}s; background: {{item.color}}"></view>
+        </view>
+      </view>
+      <view class="overlay-box">
+        <view class="overlay-emoji">🎆</view>
+        <view class="overlay-text">全部捏爆啦！</view>
+        <view class="settle-row">
+          <view class="settle-item">
+            <view class="settle-num">{{score}}</view>
+            <view class="settle-label">本局得分</view>
+          </view>
+          <view class="settle-item">
+            <view class="settle-num">{{elapsedText}}s</view>
+            <view class="settle-label">用时</view>
+          </view>
+        </view>
+        <view class="rating rating-{{ratingClass}}">{{ratingName}}</view>
+        <view class="new-best" wx:if="{{isNewBest}}">🏆 破纪录啦！</view>
+        <view class="best-tip">历史最佳 {{bestScore}} 分 · {{bestTimeText}}s</view>
+        <view class="btn" bindtap="resetAll">再来一张</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="btn-reset" bindtap="resetAll">换一张新的</view>
+
+  <view class="tabbar-holder"></view>
+</view>

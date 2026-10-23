@@ -1,0 +1,74 @@
+<view class="page">
+  <view class="head-card">
+    <view class="head-row">
+      <view class="head-left">
+        <view class="head-title">🔨 锤爆烦恼</view>
+        <view class="head-sub">烦恼冒头就锤它！</view>
+      </view>
+      <view class="head-right">
+        <view class="score">{{score}}</view>
+        <view class="best">最高 {{best}}</view>
+      </view>
+    </view>
+    <view class="combo" wx:if="{{combo >= 3}}">🔥 连击 x{{combo}}</view>
+    <view class="tbar">
+      <view class="tfill" style="width: {{timePercent}}%"></view>
+    </view>
+    <view class="tlabel">剩余 {{timeLeft}}s</view>
+  </view>
+
+  <view class="field" wx:if="{{state === 'playing' || state === 'over'}}">
+    <view
+      class="cell"
+      wx:for="{{holes}}"
+      wx:key="id"
+      data-id="{{item.id}}"
+      bindtap="onHit"
+    >
+      <view class="mole {{item.up ? 'up' : ''}} {{item.hit ? 'hit' : ''}} {{item.bonus ? 'bonus' : ''}}">{{item.emoji}}</view>
+      <view class="hole {{item.hit ? 'flash' : ''}}"></view>
+    </view>
+    <view
+      class="burst"
+      wx:for="{{bursts}}"
+      wx:key="id"
+      style="left: {{item.left}}%; top: {{item.top}}%"
+    >{{item.emoji}}</view>
+  </view>
+
+  <view class="overlay" wx:if="{{state === 'idle'}}">
+    <view class="panel">
+      <view class="panel-emoji">🔨</view>
+      <view class="panel-title">锤爆烦恼</view>
+      <view class="panel-desc">烦恼从洞里冒出来，冒头就锤！</view>
+      <view class="targets">
+        <view class="target">💼 +1</view>
+        <view class="target">📝 +1</view>
+        <view class="target">🧾 +1</view>
+        <view class="target">😤 +1</view>
+        <view class="target">🦟 +1</view>
+        <view class="target">💤 +1</view>
+        <view class="target bonus">🍀 +5</view>
+      </view>
+      <view class="panel-rule">30 秒内锤得越多评级越高，漏掉会断连击</view>
+      <view class="btn-start" bindtap="startGame">开始锤！</view>
+      <view class="panel-best" wx:if="{{best > 0}}">历史最高 {{best}} 分</view>
+    </view>
+  </view>
+
+  <view class="overlay" wx:if="{{state === 'over'}}">
+    <view class="panel">
+      <view class="rating-pill rating-{{result.rating}}">{{result.rating}}</view>
+      <view class="panel-title">{{result.title}}</view>
+      <view class="panel-emoji">{{result.emoji}}</view>
+      <view class="panel-score">得分 {{result.score}}</view>
+      <view class="new-best" wx:if="{{result.isNewBest}}">🏆 新纪录！</view>
+      <view class="panel-best">历史最高 {{result.best}} 分</view>
+      <view class="btn-start" bindtap="startGame">再来一局</view>
+    </view>
+  </view>
+
+  <view class="hammer" wx:for="{{hammers}}" wx:key="id" style="left: {{item.x}}rpx; top: {{item.y}}rpx">🔨</view>
+
+  <view class="tabbar-holder"></view>
+</view>

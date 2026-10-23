@@ -1,0 +1,94 @@
+<view class="page">
+  <view class="level-card">
+    <view class="level-top">
+      <view class="level-name">{{level.name}}</view>
+      <view class="level-total">解压值 {{level.total}}</view>
+    </view>
+    <view class="bar">
+      <view class="bar-fill" style="width: {{level.percent}}%"></view>
+    </view>
+    <view class="level-next" wx:if="{{level.nextName !== '已达最高'}}">距「{{level.nextName}}」还差 {{level.need}} 点解压值</view>
+    <view class="level-next" wx:else>已达最高形态，你是解压之王 👑</view>
+  </view>
+
+  <view class="stats-grid">
+    <view class="stat-card">
+      <view class="stat-num">{{stats.meritToday}}</view>
+      <view class="stat-label">今日功德</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{stats.meritTotal}}</view>
+      <view class="stat-label">累计功德</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{stats.bubblesTotal}}</view>
+      <view class="stat-label">捏爆泡泡</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{stats.drawsTotal}}</view>
+      <view class="stat-label">求签次数</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{stats.whackTotal}}</view>
+      <view class="stat-label">锤爆烦恼</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-num">{{stats.whackBestScore}}</view>
+      <view class="stat-label">最佳锤分</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">成就墙 <text class="ach-count">{{achUnlocked}}/{{achTotal}}</text></view>
+    <view class="ach-grid">
+      <view
+        class="ach-item {{item.unlocked ? 'on' : 'off'}} {{item.isNew ? 'new' : ''}}"
+        wx:for="{{achievements}}"
+        wx:key="id"
+      >
+        <view class="ach-emoji">{{item.unlocked ? item.emoji : '🔒'}}</view>
+        <view class="ach-name">{{item.unlocked ? item.name : '？？？'}}</view>
+        <view class="ach-desc">{{item.desc}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">最近求签</view>
+    <view class="empty" wx:if="{{!history.length}}" bindtap="goFortune">暂无记录，点我去求一签 →</view>
+    <view class="h-item" wx:for="{{history}}" wx:key="time">
+      <view class="h-badge lv{{item.level}}">{{item.name}}</view>
+      <view class="h-text">{{item.text}}</view>
+      <view class="h-time">{{item.timeText}}</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">设置</view>
+    <view class="set-row">
+      <view class="set-label">🔊 音效</view>
+      <switch checked="{{soundOn}}" color="#6C5CE7" bindchange="onSoundChange" />
+    </view>
+  </view>
+
+  <view class="reset {{hasData ? '' : 'disabled'}}" bindtap="onReset">{{hasData ? '重置所有数据' : '数据已清空，暂无数据'}}</view>
+  <view class="footer">解压研究所 v1.0 · 祝你天天好心情</view>
+
+  <view class="ach-mask" wx:if="{{celebrate.length}}" bindtap="closeCelebrate">
+    <view class="ach-panel">
+      <view class="ach-panel-title">🎉 解锁新成就</view>
+      <view
+        class="ach-panel-item"
+        wx:for="{{celebrate}}"
+        wx:key="id"
+        style="animation-delay: {{index * 100}}ms"
+      >
+        <view class="ach-panel-emoji">{{item.emoji}}</view>
+        <view class="ach-panel-name">{{item.name}}</view>
+      </view>
+      <view class="ach-panel-tip">点击任意处关闭</view>
+    </view>
+  </view>
+
+  <view class="tabbar-holder"></view>
+</view>

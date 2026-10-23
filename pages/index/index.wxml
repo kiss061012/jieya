@@ -1,0 +1,53 @@
+<view class="page">
+  <view class="tip-card" bindtap="refreshTip">
+    <view class="tip-emoji">{{tip.emoji}}</view>
+    <view class="tip-main">
+      <view class="tip-label">今日解压小贴士 · 点我换一条</view>
+      <view class="tip-text {{tipAnim ? 'anim' : ''}}">{{tip.text}}</view>
+    </view>
+  </view>
+
+  <view class="fish-stage">
+    <view class="wave" wx:for="{{waves}}" wx:key="id"></view>
+    <view class="fish-halo">
+      <view class="fish {{knocking ? 'knock' : ''}}" bindtap="onKnock">{{skin.emoji}}</view>
+    </view>
+    <view class="float-item" wx:for="{{floats}}" wx:key="id" style="left: {{item.x}}%">+1</view>
+    <view class="combo" wx:if="{{combo >= 3}}">🔥 {{combo}} 连击</view>
+  </view>
+
+  <view class="merit-row">
+    <view class="merit-card">
+      <view class="merit-num">{{stats.meritToday}}</view>
+      <view class="merit-label">今日功德</view>
+    </view>
+    <view class="merit-card">
+      <view class="merit-num">{{stats.meritTotal}}</view>
+      <view class="merit-label">累计功德</view>
+    </view>
+  </view>
+
+  <view class="skin-card">
+    <view class="skin-name">木鱼等级 Lv.{{skin.level}} · {{skin.emoji}} {{skin.name}}</view>
+    <view class="skin-bar">
+      <view class="skin-bar-fill" style="width: {{skinProgress}}%"></view>
+    </view>
+    <view class="skin-next" wx:if="{{next}}">再敲 {{nextNeed}} 下进化成 {{next.emoji}} {{next.name}}</view>
+    <view class="skin-next" wx:else>已是最终形态，功德无量 🙏</view>
+    <view class="skin-sound-hint">🔊 敲击声随形态进化（Lv.{{skin.level}}）</view>
+    <view class="skin-track">
+      <view
+        wx:for="{{skinLevels}}"
+        wx:key="level"
+        class="st-item {{item.level === skin.level ? 'current' : ''}} {{item.done ? '' : 'locked'}}"
+      >
+        <view class="st-emoji">{{item.emoji}}</view>
+        <view class="st-tag">{{item.min === 0 ? '起点' : item.min}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="hint">点一下木鱼，功德 +1，木鱼会慢慢进化</view>
+
+  <view class="tabbar-holder"></view>
+</view>

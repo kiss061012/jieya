@@ -1,0 +1,10 @@
+page {
+  background: #F6F4FB;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+}
+
+/* 为悬浮 tabbar 预留高度 */
+.tabbar-holder {
+  height: 170rpx;
+}

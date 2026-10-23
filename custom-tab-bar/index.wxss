@@ -1,0 +1,44 @@
+.bar {
+  position: fixed;
+  left: 30rpx;
+  right: 30rpx;
+  bottom: 30rpx;
+  height: 120rpx;
+  background: #fff;
+  border-radius: 60rpx;
+  display: flex;
+  box-shadow: 0 10rpx 40rpx rgba(108, 92, 231, 0.25);
+  z-index: 100;
+}
+
+.bar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rpx;
+}
+
+.bar-icon {
+  font-size: 44rpx;
+  line-height: 1;
+  opacity: 0.4;
+  transform: scale(1);
+  transition: all 0.2s;
+}
+
+.bar-text {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.bar-item.active .bar-icon {
+  opacity: 1;
+  transform: scale(1.18);
+}
+
+.bar-item.active .bar-text {
+  color: #6C5CE7;
+  font-weight: bold;
+}
